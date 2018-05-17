@@ -42,12 +42,11 @@ public class Simulation {
      * @param   itemList     ArrayList of Items
      * @return  the ArrayList of those U1 rockets that are fully loaded.
      */
-    public ArrayList<U1> loadU1(ArrayList<Item> itemList) {
-        ArrayList<U1> rocketU1List = new ArrayList<U1>();
+    public ArrayList<Rocket> loadU1(ArrayList<Item> itemList) {
+        ArrayList<Rocket> rocketU1List = new ArrayList<>();
 
-        U1 rocketU1 = new U1();
+        Rocket rocketU1 = new U1();
         for (Item item : itemList) {
-            //U1 rocketU1 = new U1();
             if (rocketU1.canCarry(item)) {
                 rocketU1.carry(item);
             }
@@ -55,7 +54,6 @@ public class Simulation {
                 rocketU1List.add(rocketU1);
                 rocketU1 = new U1();
                 rocketU1.carry(item);
-
             }
         }
         // add last rocket
@@ -68,10 +66,10 @@ public class Simulation {
      * @param itemList Array of Item
      * @return array list of those U2 rockets that are fully loaded.
      */
-    public ArrayList<U2> loadU2(ArrayList<Item> itemList) {
-        ArrayList<U2> rocketU2List = new ArrayList<>();
+    public ArrayList<Rocket> loadU2(ArrayList<Item> itemList) {
+        ArrayList<Rocket> rocketU2List = new ArrayList<>();
 
-        U2 rocketU2 = new U2();
+        Rocket rocketU2 = new U2();
         for (Item item : itemList) {
             if (rocketU2.canCarry(item)) {
                 rocketU2.carry(item);
@@ -121,14 +119,14 @@ public class Simulation {
                 }
             }
         }
-
         System.out.println("Ket qua phong tau vu tru, du dinh phong " +rocketArrayList.size()+ " lan, thuc te phong " +totalRocket+ " lan.");
         int totalBudget = totalRocket *rocketArrayList.get(0).cost;
         System.out.println("Budget: " + totalBudget + " Million.");
         return totalBudget;
     }
 
-    /*public static void main(String[] args) {
+    /**
+     public static void main(String[] args) {
         Simulation simulation = new Simulation();
         ArrayList<Item> items = simulation.loadItems("phase-1.txt");
         int weighPhase = 0;
@@ -138,7 +136,7 @@ public class Simulation {
             System.out.printf(item.getName() + "\t" +item.getWeight()+"\n");
         }
 
-        ArrayList u1List = simulation.loadU1(items);
+        ArrayList<Rocket> u1List = simulation.loadU1(items);
         ArrayList u2List = simulation.loadU2(items);
 
         System.out.println("So luong rocket U1:" + u1List.size());
